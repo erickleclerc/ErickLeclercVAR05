@@ -28,7 +28,7 @@ public class RaceManager : MonoBehaviour
             turnNumber++;
             turnTracker.text = $"Turn Number: {turnNumber}";
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1.5f);
         }
     }
 
