@@ -7,16 +7,16 @@ using TMPro;
 public class RaceManager : MonoBehaviour
 {
     private int turnNumber;
-    private bool finishLine = false;
+    public bool finishLine = false;
 
     public TextMeshProUGUI turnTracker;
+    public float turnRoundSpeed = .5f;
 
-    private IEnumerator GameTurns()
+    public IEnumerator GameTurns()
     {
         while (finishLine == false)
         {
             //ai will play turn
-
             GameObject otherPlayer = GameObject.FindWithTag("Player");
             otherPlayer.GetComponent<MoveAhead>().MoveForward();
 
@@ -28,7 +28,7 @@ public class RaceManager : MonoBehaviour
             turnNumber++;
             turnTracker.text = $"Turn Number: {turnNumber}";
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(turnRoundSpeed);
         }
     }
 
@@ -39,6 +39,16 @@ public class RaceManager : MonoBehaviour
     }
 
     void Update()
+    {
+        SelectPlayer();
+        //Debug.Log(finishLine);
+        if (finishLine == true)
+        {
+            StopCoroutine(GameTurns());
+        }
+    }
+
+    private void SelectPlayer()
     {
         //selecting player on screen
         if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -55,7 +65,7 @@ public class RaceManager : MonoBehaviour
 
                     turnTracker.text = $"Turn Number: {turnNumber}";
                     StartCoroutine(GameTurns());
-                  
+
                 }
             }
         }
