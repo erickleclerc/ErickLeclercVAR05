@@ -522,6 +522,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c03b8675914da4c9f86b24849aed0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raceManagerScript: {fileID: 1988786106}
+  raceManager: {fileID: 1988786105}
 --- !u!54 &450112701
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -707,6 +709,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c03b8675914da4c9f86b24849aed0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raceManagerScript: {fileID: 1988786106}
+  raceManager: {fileID: 1988786105}
 --- !u!54 &652875121
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1723,6 +1727,10 @@ PrefabInstance:
     - target: {fileID: 2351224458020519849, guid: 8a875c49ec23274479a171bc9ceea133, type: 3}
       propertyPath: m_Name
       value: Finish Line
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351224458020519849, guid: 8a875c49ec23274479a171bc9ceea133, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a875c49ec23274479a171bc9ceea133, type: 3}

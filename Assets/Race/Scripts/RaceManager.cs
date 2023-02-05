@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
@@ -44,13 +43,12 @@ public class RaceManager : MonoBehaviour
         //Debug.Log(finishLine);
         if (finishLine == true)
         {
-            StopCoroutine(GameTurns());
+            StopAllCoroutines();
         }
     }
 
     private void SelectPlayer()
     {
-        //selecting player on screen
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Ray ray = Camera.main.ScreenPointToRay(pos: (Vector3)Mouse.current.position.ReadValue());
