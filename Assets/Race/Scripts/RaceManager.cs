@@ -8,6 +8,7 @@ public class RaceManager : MonoBehaviour
     private int turnNumber;
     public bool finishLine = false;
 
+    public GameObject resultsObject;
     public TextMeshProUGUI turnTracker;
     public float turnRoundSpeed = .5f;
 
@@ -16,8 +17,12 @@ public class RaceManager : MonoBehaviour
         while (finishLine == false)
         {
             //ai will play turn
-            GameObject otherPlayer = GameObject.FindWithTag("Player");
-            otherPlayer.GetComponent<MoveAhead>().MoveForward();
+            GameObject[] otherPlayer = GameObject.FindGameObjectsWithTag("Player");
+            for (int i = 0; i < otherPlayer.Length; i++)
+            {
+                otherPlayer[i].GetComponent<MoveAhead>().MoveForward();
+            }
+                //otherPlayer.GetComponent<MoveAhead>().MoveForward();
 
             //player will have a turn
             GameObject myPlayer = GameObject.FindWithTag("Selected Player");
@@ -44,6 +49,7 @@ public class RaceManager : MonoBehaviour
         if (finishLine == true)
         {
             StopAllCoroutines();
+            resultsObject.SetActive(true);
         }
     }
 
