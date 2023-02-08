@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
@@ -9,7 +7,7 @@ public class FollowPlayer : MonoBehaviour
         GameObject selectedPlayer = GameObject.FindWithTag("Selected Player");
         if (selectedPlayer != null)
         {
-            transform.position = selectedPlayer.transform.position + new Vector3(0,1,-5); 
+            transform.position = selectedPlayer.transform.position + new Vector3(0,1,-5);
         }
     }
 }

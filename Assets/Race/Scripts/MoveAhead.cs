@@ -10,10 +10,8 @@ public class MoveAhead : MonoBehaviour
 
     private void Awake()
     {
-        //raceManagerScript = GetComponent<RaceManager>();
         raceManagerScript = raceManager.GetComponent<RaceManager>();
     }
-
 
     public void MoveForward()
     {
@@ -31,19 +29,20 @@ public class MoveAhead : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Muddy")
+        if (other.CompareTag("Muddy"))
         {
             terrainNumber = 2;
         }
-        else if (other.gameObject.tag == "Regular")
+        else if (other.CompareTag("Regular"))
         {
             terrainNumber = 1;
         }
-        else if (other.gameObject.tag == "FinishLine")
+        else if (other.CompareTag("FinishLine"))
         {
-            //StopCoroutine(raceManagerScript.GameTurns());
+            gameObject.transform.tag = "Winner";
+
+            //stops the game
             raceManagerScript.finishLine = true;
-            
         }
     }
 }

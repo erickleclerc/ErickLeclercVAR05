@@ -6,25 +6,24 @@ using TMPro;
 public class RaceManager : MonoBehaviour
 {
     private int turnNumber;
-    public bool finishLine = false;
 
     public GameObject resultsObject;
     public TextMeshProUGUI turnTracker;
     public float turnRoundSpeed = .5f;
+    public bool finishLine = false;
 
     public IEnumerator GameTurns()
     {
         while (finishLine == false)
         {
-            //ai will play turn
+            //other racers' turns
             GameObject[] otherPlayer = GameObject.FindGameObjectsWithTag("Player");
             for (int i = 0; i < otherPlayer.Length; i++)
             {
                 otherPlayer[i].GetComponent<MoveAhead>().MoveForward();
             }
-                //otherPlayer.GetComponent<MoveAhead>().MoveForward();
 
-            //player will have a turn
+            //player's turn
             GameObject myPlayer = GameObject.FindWithTag("Selected Player");
             myPlayer.GetComponent<MoveAhead>().MoveForward();
 
@@ -45,7 +44,6 @@ public class RaceManager : MonoBehaviour
     void Update()
     {
         SelectPlayer();
-        //Debug.Log(finishLine);
         if (finishLine == true)
         {
             StopAllCoroutines();
@@ -58,18 +56,15 @@ public class RaceManager : MonoBehaviour
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Ray ray = Camera.main.ScreenPointToRay(pos: (Vector3)Mouse.current.position.ReadValue());
-            RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 if (hit.transform.CompareTag("Player"))
                 {
                     hit.collider.transform.tag = "Selected Player";
-                    Debug.Log("Player selected and tagged");
 
                     turnTracker.text = $"Turn Number: {turnNumber}";
                     StartCoroutine(GameTurns());
-
                 }
             }
         }

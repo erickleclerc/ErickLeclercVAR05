@@ -9,6 +9,7 @@ TagManager:
   - Selected Player
   - Regular
   - FinishLine
+  - Winner
   layers:
   - Default
   - TransparentFX
