@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,5 +22,18 @@ public class CardDetails : MonoBehaviour
     {
         return GetComponent<SpriteRenderer>().sprite.name;
     }
+
+    public void SetPNG(Sprite newSprite)
+    {
+        gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
+    }
+
+    public void ResetCardForNewHand()
+    {
+        Sprite backSide = GameObject.Find("Deck").GetComponent<Deck>().GetCardBack();
+        gameObject.GetComponent<SpriteRenderer>().sprite = backSide;                                 //return hand to a back side look
+        value = 0;
+    }
+
     
 }

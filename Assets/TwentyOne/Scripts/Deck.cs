@@ -6,12 +6,12 @@ public class Deck : MonoBehaviour
 {
     public Sprite[] cardPNG;
     int[] cardValues = new int[53];
-    int currentIndex = 0;
+    private int currentIndex = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetCardValues();
     }
 
 
@@ -49,9 +49,18 @@ public class Deck : MonoBehaviour
         }
     }
 
-    public int Dealing()
+    public int Dealing(CardDetails cardDetails)
     {
-        //cardDetails.SetSprite
-        return 0;
+        cardDetails.SetPNG(cardPNG[currentIndex]);
+        cardDetails.SetValueOfCurrentCard(cardValues[currentIndex]);
+        currentIndex++;                                                 // move the to the next card
+        return cardDetails.GetValueOfCurrentCard();
+        
+        
+    }
+
+    public Sprite GetCardBack()
+    {
+        return cardPNG[0]; //returns the back side looking card in the index
     }
 }

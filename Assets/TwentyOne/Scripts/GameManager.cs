@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public Button hitButton;
     public Button standButton;
 
+   public Player player;
+   public Player dealer;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +23,9 @@ public class GameManager : MonoBehaviour
     }
     private void DealHasBeenClicked()
     {
-        throw new NotImplementedException();
+        GameObject.Find("Deck").GetComponent<Deck>().Shuffle();         //shuffle before dealing cards
+        player.StartPlaying();
+        dealer.StartPlaying();
     }
     private void HitHasBeenClicked()
     {
