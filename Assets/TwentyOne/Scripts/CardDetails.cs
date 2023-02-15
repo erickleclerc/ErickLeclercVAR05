@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class CardDetails : MonoBehaviour
 {
-    public Renderer circle, topBar;
-    public Material red, black;
-    public enum CardColor { red, black}
+    // Value of card, 7 of diamonds = 7, etc
+    public int value = 0;
 
-    public void SetColor (CardColor color)
+    public int GetValueOfCurrentCard()
     {
-        Material mat = color == CardColor.black ? black : red;
-
-
+        return value;
     }
 
+    public void SetValueOfCurrentCard(int newValue)
+    {
+        value = newValue;
+    }
 
+    public string GetPNGName()
+    {
+        return GetComponent<SpriteRenderer>().sprite.name;
+    }
     
 }
