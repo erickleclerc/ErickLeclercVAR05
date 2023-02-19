@@ -18,8 +18,11 @@ public class BlackJackGame : MonoBehaviour
     public TextMeshProUGUI dealerHandDisplay;
     public TextMeshProUGUI finalResult;
     public GameObject resetButton;
+    public GameObject dealCardsButton;
+    public GameObject hitButton;
+    public GameObject standButton;
 
-    private float cardPosition = .5f;
+    private float cardPosition = .75f;
 
     private class MyCard : object
     {
@@ -100,12 +103,19 @@ public class BlackJackGame : MonoBehaviour
         {
             finalResult.text = "BUSTED";
             resetButton.gameObject.SetActive(true);
+            dealCardsButton.gameObject.SetActive(false);
+            hitButton.gameObject.SetActive(false);
+            standButton.gameObject.SetActive(false);
             
             }
         else if (playerTotalScore == 21)
         {
             finalResult.text = "BLACKJACK! You Win!";
             resetButton.gameObject.SetActive(true);
+            dealCardsButton.gameObject.SetActive(false);
+            hitButton.gameObject.SetActive(false);
+            standButton.gameObject.SetActive(false);
+
         }
     }
 
@@ -147,7 +157,7 @@ public class BlackJackGame : MonoBehaviour
         dealerHandDisplay.text = $"Hand Value: {dealerTotalScore - dealtCard3.value}";
 
 
-        //IF 21 INSTANT WIN
+        dealCardsButton.SetActive(false);
 
     }
 
@@ -164,7 +174,7 @@ public class BlackJackGame : MonoBehaviour
             playerTotalScore = playerTotalScore + dealtCard.value;
             playerHandDisplay.text = $"Hand Value: {playerTotalScore}";
 
-            cardPosition = cardPosition + 1f;
+            cardPosition = cardPosition + 1.25f;
         }
 
         //if score > 21, INSTANT BUST, RESET GAME
@@ -173,7 +183,7 @@ public class BlackJackGame : MonoBehaviour
     public void HitNextDealerCard()
     {
         // add more cards to player
-        while (dealerTotalScore < 21)
+        while (dealerTotalScore < 17)
         {
             int selectedCardIndex = Random.Range(0, deck.Count);
             MyCard dealtCard = deck[selectedCardIndex];
@@ -183,7 +193,7 @@ public class BlackJackGame : MonoBehaviour
             dealerTotalScore = dealerTotalScore + dealtCard.value;
             dealerHandDisplay.text = $"Hand Value: {dealerTotalScore}";
 
-            cardPosition = cardPosition + 1f;
+            cardPosition = cardPosition + 1.25f;
         }
     }
 
@@ -192,23 +202,42 @@ public class BlackJackGame : MonoBehaviour
         hiderCard.SetActive(false);
         dealerHandDisplay.text = $"Hand Value: {dealerTotalScore}";
 
+        hitButton.gameObject.SetActive(false);
+        standButton.gameObject.SetActive(false);
+
+
+
         if (dealerTotalScore >= 16)
         {
             CompareScores();
         }
         else
         {
-
+            HitNextDealerCard();
         }
 
 
-        //if 16 stop and compare,
 
         //else if add more cards to dealer until > player score or over 21
     }
 
     void CompareScores()
     {
+        if (dealerTotalScore > playerTotalScore)
+        {
+            finalResult.text = "Dealer Wins";
+        }
+        else if (dealerTotalScore < playerTotalScore)
+        {
+            finalResult.text = "You Win!";
+        }
+        else if (dealerTotalScore == playerTotalScore)
+        {
+            finalResult.text = "Push. Keep Your Bet";
+        }
 
+
+
+        resetButton.gameObject.SetActive(true);
     }
 }

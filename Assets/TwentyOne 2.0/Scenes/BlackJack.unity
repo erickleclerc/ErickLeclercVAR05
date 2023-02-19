@@ -1106,6 +1106,9 @@ MonoBehaviour:
   dealerHandDisplay: {fileID: 1884194737}
   finalResult: {fileID: 312762436}
   resetButton: {fileID: 922570136}
+  dealCardsButton: {fileID: 1591964610}
+  hitButton: {fileID: 205652954}
+  standButton: {fileID: 1468171296}
 --- !u!1 &800833207
 GameObject:
   m_ObjectHideFlags: 0
