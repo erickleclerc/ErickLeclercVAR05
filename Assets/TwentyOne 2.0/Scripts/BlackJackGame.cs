@@ -4,16 +4,11 @@ using TMPro;
 
 public class BlackJackGame : MonoBehaviour
 {
-    public GameObject cardPrefab;
-    public GameObject hiderCard;
-
     enum Suit { Hearts, Spades, Diamonds, Clubs }
 
     public TextMeshPro wordsOnCard;
-
     public int playerTotalScore;
     public int dealerTotalScore;
-
     public TextMeshProUGUI playerHandDisplay;
     public TextMeshProUGUI dealerHandDisplay;
     public TextMeshProUGUI finalResult;
@@ -21,6 +16,8 @@ public class BlackJackGame : MonoBehaviour
     public GameObject dealCardsButton;
     public GameObject hitButton;
     public GameObject standButton;
+    public GameObject cardPrefab;
+    public GameObject hiderCard;
 
     private float cardPosition = .75f;
 
@@ -46,7 +43,7 @@ public class BlackJackGame : MonoBehaviour
         {
             return $"{name} of {suit}";
         }
-    }
+    } //Defining the Cards's value, suit, and name
 
     List<MyCard> deck = new List<MyCard>();
 
@@ -95,7 +92,7 @@ public class BlackJackGame : MonoBehaviour
                 deck.Add(card);
             }
         }
-    }
+    } // CREAING THE DECK
 
     private void Update()
     {
@@ -106,8 +103,7 @@ public class BlackJackGame : MonoBehaviour
             dealCardsButton.gameObject.SetActive(false);
             hitButton.gameObject.SetActive(false);
             standButton.gameObject.SetActive(false);
-            
-            }
+        }
         else if (playerTotalScore == 21)
         {
             finalResult.text = "BLACKJACK! You Win!";
@@ -115,7 +111,6 @@ public class BlackJackGame : MonoBehaviour
             dealCardsButton.gameObject.SetActive(false);
             hitButton.gameObject.SetActive(false);
             standButton.gameObject.SetActive(false);
-
         }
     }
 
@@ -158,8 +153,7 @@ public class BlackJackGame : MonoBehaviour
 
 
         dealCardsButton.SetActive(false);
-
-    }
+    } //Deals the first 2 cards for EACH PLAYER
 
     public void HitNextCard()
     {
@@ -182,6 +176,8 @@ public class BlackJackGame : MonoBehaviour
 
     public void HitNextDealerCard()
     {
+        dealerHandDisplay.text = $"Hand Value: {dealerTotalScore}";
+
         // add more cards to player
         while (dealerTotalScore < 17)
         {
@@ -205,25 +201,19 @@ public class BlackJackGame : MonoBehaviour
         hitButton.gameObject.SetActive(false);
         standButton.gameObject.SetActive(false);
 
-
-
-        if (dealerTotalScore >= 16)
-        {
-            CompareScores();
-        }
-        else
+        while (dealerTotalScore < 17)
         {
             HitNextDealerCard();
         }
 
-
+        CompareScores();
 
         //else if add more cards to dealer until > player score or over 21
     }
 
     void CompareScores()
     {
-        if (dealerTotalScore > playerTotalScore)
+        if (dealerTotalScore > playerTotalScore && dealerTotalScore <= 21)
         {
             finalResult.text = "Dealer Wins";
         }
@@ -234,6 +224,10 @@ public class BlackJackGame : MonoBehaviour
         else if (dealerTotalScore == playerTotalScore)
         {
             finalResult.text = "Push. Keep Your Bet";
+        }
+        else if (dealerTotalScore > 21)
+        {
+            finalResult.text = "Dealer Busted. You Win!";
         }
 
 
