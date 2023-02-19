@@ -19,7 +19,8 @@ public class BlackJackGame : MonoBehaviour
     public GameObject cardPrefab;
     public GameObject hiderCard;
 
-    private float cardPosition = .75f;
+    private float playerExtraCardPosition = .75f;
+    private float dealerExtraCardPosition = .75f;
 
     private class MyCard : object
     {
@@ -162,13 +163,13 @@ public class BlackJackGame : MonoBehaviour
         {
             int selectedCardIndex = Random.Range(0, deck.Count);
             MyCard dealtCard = deck[selectedCardIndex];
-            GameObject nextCardForPlayer = Instantiate(cardPrefab, new Vector3(cardPosition, 0.3f, .28f), Quaternion.identity);
+            GameObject nextCardForPlayer = Instantiate(cardPrefab, new Vector3(playerExtraCardPosition, 0.3f, .28f), Quaternion.identity);
             nextCardForPlayer.GetComponentInChildren<TextMeshPro>().text = dealtCard.ToString();
 
             playerTotalScore = playerTotalScore + dealtCard.value;
             playerHandDisplay.text = $"Hand Value: {playerTotalScore}";
 
-            cardPosition = cardPosition + 1.25f;
+            playerExtraCardPosition = playerExtraCardPosition + 1.25f;
         }
 
         //if score > 21, INSTANT BUST, RESET GAME
@@ -183,13 +184,13 @@ public class BlackJackGame : MonoBehaviour
         {
             int selectedCardIndex = Random.Range(0, deck.Count);
             MyCard dealtCard = deck[selectedCardIndex];
-            GameObject nextCardForPlayer = Instantiate(cardPrefab, new Vector3(cardPosition, 0.3f, 3f), Quaternion.identity);
+            GameObject nextCardForPlayer = Instantiate(cardPrefab, new Vector3(dealerExtraCardPosition, 0.3f, 3f), Quaternion.identity);
             nextCardForPlayer.GetComponentInChildren<TextMeshPro>().text = dealtCard.ToString();
 
             dealerTotalScore = dealerTotalScore + dealtCard.value;
             dealerHandDisplay.text = $"Hand Value: {dealerTotalScore}";
 
-            cardPosition = cardPosition + 1.25f;
+            dealerExtraCardPosition = dealerExtraCardPosition + 1.25f;
         }
     }
 
