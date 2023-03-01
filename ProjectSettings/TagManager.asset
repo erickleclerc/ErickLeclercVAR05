@@ -12,6 +12,8 @@ TagManager:
   - Winner
   - RedPlayer
   - BlackPlayer
+  - CrownedRed
+  - CrownedBlack
   layers:
   - Default
   - TransparentFX

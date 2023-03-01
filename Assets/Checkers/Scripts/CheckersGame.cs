@@ -68,6 +68,12 @@ public class CheckersGame : MonoBehaviour
             {
                 redPieces[i].gameObject.layer = LayerMask.NameToLayer("NoRaycast");
             }
+            GameObject[] redPiecesCrowned = GameObject.FindGameObjectsWithTag("CrownedRed");
+
+            for (int i = 0; i < redPiecesCrowned.Length; i++)
+            {
+                redPiecesCrowned[i].gameObject.layer = LayerMask.NameToLayer("NoRaycast");
+            }
 
         } //Changing Raycast layer for player turns
         else if (playerOneTurn == true)
@@ -77,6 +83,12 @@ public class CheckersGame : MonoBehaviour
             for (int i = 0; i < redPieces.Length; i++)
             {
                 redPieces[i].gameObject.layer = LayerMask.NameToLayer("CanRaycast");
+            }
+            GameObject[] redPiecesCrowned = GameObject.FindGameObjectsWithTag("CrownedRed");
+
+            for (int i = 0; i < redPiecesCrowned.Length; i++)
+            {
+                redPiecesCrowned[i].gameObject.layer = LayerMask.NameToLayer("CanRaycast");
             }
         }
 
@@ -88,6 +100,12 @@ public class CheckersGame : MonoBehaviour
             {
                 blackPieces[i].gameObject.layer = LayerMask.NameToLayer("NoRaycast");
             }
+            GameObject[] blackPiecesCrowned = GameObject.FindGameObjectsWithTag("CrownedBlack");
+
+            for (int i = 0; i < blackPiecesCrowned.Length; i++)
+            {
+                blackPiecesCrowned[i].gameObject.layer = LayerMask.NameToLayer("NoRaycast");
+            }
         }
         else if (playerTwoTurn == true)
         {
@@ -96,6 +114,13 @@ public class CheckersGame : MonoBehaviour
             for (int i = 0; i < blackPieces.Length; i++)
             {
                 blackPieces[i].gameObject.layer = LayerMask.NameToLayer("CanRaycast");
+            }
+
+            GameObject[] blackPiecesCrowned = GameObject.FindGameObjectsWithTag("CrownedBlack");
+
+            for (int i = 0; i < blackPiecesCrowned.Length; i++)
+            {
+                blackPiecesCrowned[i].gameObject.layer = LayerMask.NameToLayer("CanRaycast");
             }
         }
 
@@ -111,12 +136,13 @@ public class CheckersGame : MonoBehaviour
             {
                 if (selectedPiece != null)
                 {
-                    // What tile did we hit on the board to place the piece?            
+                    // What tile did we select on the board to place the piece?            
                     int xHit = selectedPiece.x;
                     int zHit = selectedPiece.z;
                     Debug.Log($"We hit point: {hit.point} resulting in {xHit}, {zHit}");
 
-                    if (selectedPiece.gameObject.CompareTag("RedPlayer"))       //IF PLAYER RED = ONLY UP and RIGHT/LEFT. IF PLAYER BLACK = ONLY DOWN and RIGHT/LEFT  
+                    //MOVING THE PLAYERS
+                    if (selectedPiece.gameObject.CompareTag("RedPlayer"))       //IF PLAYER RED = ONLY UP and RIGHT/LEFT  
                     {
                         if (hit.point.x < xHit)
                         {
@@ -129,7 +155,7 @@ public class CheckersGame : MonoBehaviour
                         Debug.Log("Redplayer Placement");
                         zHit = selectedPiece.z + 10;
                     }
-                    else if (selectedPiece.gameObject.CompareTag("BlackPlayer"))
+                    else if (selectedPiece.gameObject.CompareTag("BlackPlayer"))    //IF PLAYER BLACK = ONLY DOWN and RIGHT / LEFT
                     {
                         if (hit.point.x < xHit)
                         {
@@ -142,8 +168,27 @@ public class CheckersGame : MonoBehaviour
                         Debug.Log("Black player Placement");
                         zHit = selectedPiece.z - 10;
                     }
+                    else if (selectedPiece.gameObject.CompareTag("CrownedBlack") || selectedPiece.gameObject.CompareTag("CrownedRed"))      //CROWNED PLAYER = MOVE IN ANY DIRECTION
+                    {
+                        if (hit.point.x < xHit)
+                        {
+                            xHit = selectedPiece.x - 10;
+                        }
+                        else if (hit.point.x > xHit)
+                        {
+                            xHit = selectedPiece.x + 10;
+                        }
 
-                    selectedPiece.SetPosition(xHit, zHit);
+                        if (hit.point.z < zHit || hit.point.z > 75)
+                        {
+                            zHit = selectedPiece.z - 10;
+                        }
+                        else if (hit.point.z > zHit || hit.point.z < 5)
+                        {
+                            zHit = selectedPiece.z + 10;
+                        }
+                    }
+                    selectedPiece.SetPosition(xHit, zHit); 
 
 
                     //IF UNOCCUPIED, SET POSITION
@@ -180,24 +225,34 @@ public class CheckersGame : MonoBehaviour
                         Debug.Log($"selected piece at {selectedPiece.x}, {selectedPiece.z}");
                     }
                 }
-
-
             }
-            Debug.DrawRay(ray.origin, ray.direction * 20, Color.green, 20);
+            Debug.DrawRay(ray.origin, ray.direction * 100, Color.green, 5);
         }
 
-
-
-        //IF A PLAYER REACHES END OF THE BOARD... CHANGE TAG TO OTHER PLAYER TO MAKE IT GO IN OTHER DIRECTION
-        // EX: if gameObject.CompareTag("REDPlayer") position.z = 75 ...
-        //      if gameObject.CompareTag("BlackPlayer") position.z = 5 ... gameObject.tag = "RedPlayer"
-
-
-
-
+        CheckForCrowning();
 
         CheckRemainingPieces();
+    }
 
+    private static void CheckForCrowning()
+    {
+        GameObject[] toBeCrownedRed = GameObject.FindGameObjectsWithTag("RedPlayer");
+        for (int i = 0; i < toBeCrownedRed.Length; i++)
+        {
+            if (toBeCrownedRed[i].transform.position.z > 20)
+            {
+                toBeCrownedRed[i].gameObject.tag = "CrownedRed";
+            }
+        }
+
+        GameObject[] toBeCrownedBlack = GameObject.FindGameObjectsWithTag("BlackPlayer");
+        for (int i = 0; i < toBeCrownedBlack.Length; i++)
+        {
+            if (toBeCrownedBlack[i].transform.position.z < 10)
+            {
+                toBeCrownedBlack[i].gameObject.tag = "CrownedBlack";
+            }
+        }
     }
 
     private void CheckRemainingPieces()
