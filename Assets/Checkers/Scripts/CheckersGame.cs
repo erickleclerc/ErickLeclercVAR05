@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public class CheckersGame : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class CheckersGame : MonoBehaviour
     public Material red;
     public Material black;
     public Button playAgainButton;
+    public TextMeshProUGUI winnerText;
 
     private bool playerOneTurn = true;
     private bool playerTwoTurn = false;
@@ -208,11 +210,15 @@ public class CheckersGame : MonoBehaviour
         {
             Debug.Log("No Red Pieces left");
             playAgainButton.gameObject.SetActive(true);
+            winnerText.gameObject.SetActive(true);
+            winnerText.text = "Black WINS!!!";
         }
         else if (blackPlayerPiecesLeft.Length == 0)
         {
             Debug.Log("No Black Pieces left");
             playAgainButton.gameObject.SetActive(true);
+            winnerText.gameObject.SetActive(true);
+            winnerText.text = "Red WINS!!!";
         }
     }
 }
