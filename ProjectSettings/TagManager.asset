@@ -10,6 +10,8 @@ TagManager:
   - Regular
   - FinishLine
   - Winner
+  - RedPlayer
+  - BlackPlayer
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - NoRaycast
+  - CanRaycast
   - 
   - 
   - 
