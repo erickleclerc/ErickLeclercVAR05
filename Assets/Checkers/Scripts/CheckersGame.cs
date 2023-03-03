@@ -22,6 +22,7 @@ public class CheckersGame : MonoBehaviour
         for (int i = 5; i <= 75; i += 20)
         {
             PieceBehaviour createdPiece = Instantiate(piecePrefab);
+            createdPiece.gameObject.name = "RED";
             createdPiece.SetPosition(i, 5);
             createdPiece.tag = "RedPlayer";
             Renderer renderer = createdPiece.GetComponent<Renderer>();
@@ -32,6 +33,7 @@ public class CheckersGame : MonoBehaviour
         {
             PieceBehaviour createdPiece = Instantiate(piecePrefab);
             createdPiece.SetPosition(i, 15);
+            createdPiece.gameObject.name = "RED";
             createdPiece.tag = "RedPlayer";
             Renderer renderer = createdPiece.GetComponent<Renderer>();
             renderer.material = red;
@@ -43,6 +45,7 @@ public class CheckersGame : MonoBehaviour
         {
             PieceBehaviour createdPiece = Instantiate(piecePrefab);
             createdPiece.SetPosition(i, 65);
+            createdPiece.gameObject.name = "BLACK";
             createdPiece.tag = "BlackPlayer";
             Renderer renderer = createdPiece.GetComponent<Renderer>();
             renderer.material = black;
@@ -52,6 +55,7 @@ public class CheckersGame : MonoBehaviour
         {
             PieceBehaviour createdPiece = Instantiate(piecePrefab);
             createdPiece.SetPosition(i, 75);
+            createdPiece.gameObject.name = "BLACK";
             createdPiece.tag = "BlackPlayer";
             Renderer renderer = createdPiece.GetComponent<Renderer>();
             renderer.material = black;
@@ -136,7 +140,9 @@ public class CheckersGame : MonoBehaviour
             {
                 if (selectedPiece != null)
                 {
-                    // What tile did we select on the board to place the piece?            
+                    // What tile did we select on the board to place the piece?
+                    int xHitOG = selectedPiece.x;
+                    int zHitOG = selectedPiece.z;
                     int xHit = selectedPiece.x;
                     int zHit = selectedPiece.z;
                     Debug.Log($"We hit point: {hit.point} resulting in {xHit}, {zHit}");
@@ -188,7 +194,78 @@ public class CheckersGame : MonoBehaviour
                             zHit = selectedPiece.z + 10;
                         }
                     }
-                    selectedPiece.SetPosition(xHit, zHit); 
+                    selectedPiece.SetPosition(xHit, zHit);
+
+
+
+                    //CHECK FOR OVERLAP
+                    foreach (GameObject oppositeColor in GameObject.FindGameObjectsWithTag("BlackPlayer"))
+                    {
+                        if (oppositeColor != selectedPiece.gameObject)
+                        {
+
+                            if (selectedPiece.gameObject.name == "RED")
+                            {
+                                //check to jump across
+                                if (selectedPiece.gameObject.transform.position == oppositeColor.transform.position)
+                                {
+                                    if (hit.point.x < xHit)
+                                    {
+                                        xHit = selectedPiece.x + 10;
+                                    }
+                                    else if (hit.point.x > xHit)
+                                    {
+                                        xHit = selectedPiece.x - 10;
+                                    }
+
+                                    if (hit.point.z < zHit || hit.point.z > 75)
+                                    {
+                                        zHit = selectedPiece.z + 10;
+                                    }
+                                    else if (hit.point.z > zHit || hit.point.z < 5)
+                                    {
+                                        zHit = selectedPiece.z - 10;
+                                    }
+                                    selectedPiece.SetPosition(xHit, zHit);
+                                    Destroy(oppositeColor.gameObject);
+                                }
+                            }
+                            else if (selectedPiece.gameObject.name == "BLACK")
+                            {
+                                if (selectedPiece.gameObject.transform.position == oppositeColor.transform.position)
+                                {
+
+                                    selectedPiece.SetPosition(xHitOG, zHitOG);
+                                }
+                            }
+                        }
+                    }
+                    foreach (GameObject oppositeColor in GameObject.FindGameObjectsWithTag("RedPlayer"))
+                    {
+                        if (oppositeColor != selectedPiece.gameObject)
+                        {
+
+                            if (selectedPiece.gameObject.name == "BLACK")
+                            {
+                                if (selectedPiece.gameObject.transform.position == oppositeColor.transform.position)
+                                {
+
+                                    //check to jump across
+                                    selectedPiece.SetPosition(xHit, zHit);
+                                    Destroy(oppositeColor.gameObject);
+                                }
+                            }
+                            else if (selectedPiece.gameObject.name == "RED")
+                            {
+                                if (selectedPiece.gameObject.transform.position == oppositeColor.transform.position)
+                                {
+
+                                    selectedPiece.SetPosition(xHitOG, zHitOG);
+                                }
+                            }
+
+                        }
+                    }
 
 
                     //IF UNOCCUPIED, SET POSITION
@@ -197,9 +274,6 @@ public class CheckersGame : MonoBehaviour
 
                     //IF OCCUPIED, CANNOT LAND THERE (!SETPOISITON)
                     //SUB IF SPACE ACROSS IS UNOCCUPIED, JUMP AND REMOVE OTHER PLAYER'S PIECE
-
-
-
 
 
                     selectedPiece = null;
@@ -226,8 +300,10 @@ public class CheckersGame : MonoBehaviour
                     }
                 }
             }
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.green, 5);
+            Debug.DrawRay(ray.origin, ray.direction * 75, Color.green, 5);
         }
+
+      
 
         CheckForCrowning();
 
@@ -275,5 +351,7 @@ public class CheckersGame : MonoBehaviour
             winnerText.gameObject.SetActive(true);
             winnerText.text = "Red WINS!!!";
         }
-    }
+    } //Check to determine winner
+
+
 }
