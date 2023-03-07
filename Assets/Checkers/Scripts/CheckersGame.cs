@@ -227,7 +227,6 @@ public class CheckersGame : MonoBehaviour
                     //}
                 } // MAKING SURE PIECE HAS BEEN ACCESSED
             }
-            // Debug.DrawRay(ray.origin, ray.direction * 80, Color.green, 5);
         }
 
         CheckForCrowning();
@@ -242,8 +241,10 @@ public class CheckersGame : MonoBehaviour
             {
                 if (selectedPiece.gameObject.name == "BLACK")
                 {
+                    Debug.Log("Step 1");  //CODE BREAKS HERE
                     if (selectedPiece.gameObject.transform.position == otherRedPiece.transform.position)
                     {
+                        Debug.Log("Step 2");
                         if (hit.point.x < xHit)
                         {
                             xHit = selectedPiece.x - 10;
@@ -253,17 +254,16 @@ public class CheckersGame : MonoBehaviour
                             xHit = selectedPiece.x + 10;
                         }
 
-                        if (hit.point.z < zHit || hit.point.z > 75)
+                        if (hit.point.z < zHit || hit.point.z > 80)
                         {
                             zHit = selectedPiece.z - 10;
                         }
-                        else if (hit.point.z > zHit || hit.point.z < 5)
+                        else if (hit.point.z > zHit || hit.point.z < 3)
                         {
                             zHit = selectedPiece.z + 10;
                         }
                         selectedPiece.SetPosition(xHit, zHit);
                         Destroy(otherRedPiece.gameObject);
-                        Debug.Log("JUMPED");
                     }
                 }
                 else if (selectedPiece.gameObject.name == "RED")
@@ -272,12 +272,9 @@ public class CheckersGame : MonoBehaviour
                     {
                         selectedPiece.SetPosition(xHitOG, zHitOG);
                         Debug.Log("Blocked by own red");
-
                     }
                 }
-
             }
-
         }
     }
 
@@ -321,10 +318,47 @@ public class CheckersGame : MonoBehaviour
                     }
                 }
             }
-
         }
+        foreach (GameObject otherBlackPiece in GameObject.FindGameObjectsWithTag("CrownedBlack"))
+        {
+            if (otherBlackPiece != selectedPiece.gameObject)
+            {
+                if (selectedPiece.gameObject.name == "RED")
+                {
+                    if (selectedPiece.gameObject.transform.position == otherBlackPiece.transform.position)
+                    {
+                        if (hit.point.x < xHit)
+                        {
+                            xHit = selectedPiece.x - 10;
+                        }
+                        else if (hit.point.x > xHit)
+                        {
+                            xHit = selectedPiece.x + 10;
+                        }
 
-    }
+                        if (hit.point.z < zHit || hit.point.z > 75)
+                        {
+                            zHit = selectedPiece.z - 10;
+                        }
+                        else if (hit.point.z > zHit || hit.point.z < 5)
+                        {
+                            zHit = selectedPiece.z + 10;
+                        }
+                        selectedPiece.SetPosition(xHit, zHit);
+                        Destroy(otherBlackPiece.gameObject);
+                    }
+                }
+                else if (selectedPiece.gameObject.name == "BLACK")
+                {
+                    if (selectedPiece.gameObject.transform.position == otherBlackPiece.transform.position)
+                    {
+                        selectedPiece.SetPosition(xHitOG, zHitOG);
+                        Debug.Log("Blocked by own black");
+                    }
+                }
+            }
+        }
+    } 
 
     private static void CheckForCrowning()
     {
