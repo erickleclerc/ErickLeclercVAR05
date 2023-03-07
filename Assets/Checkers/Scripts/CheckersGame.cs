@@ -128,24 +128,27 @@ public class CheckersGame : MonoBehaviour
             }
         }
 
-
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             int maxDistance = 100;
-            int layerMask = ~(1 << LayerMask.NameToLayer("NoRaycast"));
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-            bool didItHit = Physics.Raycast(ray, out RaycastHit hit, maxDistance, layerMask);
+            bool didItHit = Physics.Raycast(ray, out RaycastHit hit, maxDistance);
+            int layerMaskStopFromLanding = LayerMask.NameToLayer("NoRaycast");
 
             if (didItHit == true)
-            {
-                if (selectedPiece != null)
+            { 
+                if (hit.collider.gameObject.layer == layerMaskStopFromLanding)
                 {
-                    // What tile did we select on the board to place the piece?
+                    Debug.Log("HIT OTHER OBJECT. CAN'T MOVE");
+                    return;
+                }
+                else if (selectedPiece != null)
+                {
                     int xHitOG = selectedPiece.x;
                     int zHitOG = selectedPiece.z;
                     int xHit = selectedPiece.x;
                     int zHit = selectedPiece.z;
-                    Debug.Log($"We hit point: {hit.point} resulting in {xHit}, {zHit}");
+                    // Debug.Log($"We hit point: {hit.point} resulting in {xHit}, {zHit}");
 
                     //MOVING THE PLAYERS
                     if (selectedPiece.gameObject.CompareTag("RedPlayer"))       //IF PLAYER RED = ONLY UP and RIGHT/LEFT  
@@ -158,7 +161,6 @@ public class CheckersGame : MonoBehaviour
                         {
                             xHit = selectedPiece.x + 10;
                         }
-                        Debug.Log("Redplayer Placement");
                         zHit = selectedPiece.z + 10;
                     }
                     else if (selectedPiece.gameObject.CompareTag("BlackPlayer"))    //IF PLAYER BLACK = ONLY DOWN and RIGHT / LEFT
@@ -171,7 +173,6 @@ public class CheckersGame : MonoBehaviour
                         {
                             xHit = selectedPiece.x + 10;
                         }
-                        Debug.Log("Black player Placement");
                         zHit = selectedPiece.z - 10;
                     }
                     else if (selectedPiece.gameObject.CompareTag("CrownedBlack") || selectedPiece.gameObject.CompareTag("CrownedRed"))      //CROWNED PLAYER = MOVE IN ANY DIRECTION
@@ -197,86 +198,12 @@ public class CheckersGame : MonoBehaviour
                     selectedPiece.SetPosition(xHit, zHit);
 
 
-
                     //CHECK FOR OVERLAP
-                    foreach (GameObject oppositeColor in GameObject.FindGameObjectsWithTag("BlackPlayer"))
-                    {
-                        if (oppositeColor != selectedPiece.gameObject)
-                        {
-
-                            if (selectedPiece.gameObject.name == "RED")
-                            {
-                                //check to jump across
-                                if (selectedPiece.gameObject.transform.position == oppositeColor.transform.position)
-                                {
-                                    if (hit.point.x < xHit)
-                                    {
-                                        xHit = selectedPiece.x + 10;
-                                    }
-                                    else if (hit.point.x > xHit)
-                                    {
-                                        xHit = selectedPiece.x - 10;
-                                    }
-
-                                    if (hit.point.z < zHit || hit.point.z > 75)
-                                    {
-                                        zHit = selectedPiece.z + 10;
-                                    }
-                                    else if (hit.point.z > zHit || hit.point.z < 5)
-                                    {
-                                        zHit = selectedPiece.z - 10;
-                                    }
-                                    selectedPiece.SetPosition(xHit, zHit);
-                                    Destroy(oppositeColor.gameObject);
-                                }
-                            }
-                            else if (selectedPiece.gameObject.name == "BLACK")
-                            {
-                                if (selectedPiece.gameObject.transform.position == oppositeColor.transform.position)
-                                {
-
-                                    selectedPiece.SetPosition(xHitOG, zHitOG);
-                                }
-                            }
-                        }
-                    }
-                    foreach (GameObject oppositeColor in GameObject.FindGameObjectsWithTag("RedPlayer"))
-                    {
-                        if (oppositeColor != selectedPiece.gameObject)
-                        {
-
-                            if (selectedPiece.gameObject.name == "BLACK")
-                            {
-                                if (selectedPiece.gameObject.transform.position == oppositeColor.transform.position)
-                                {
-
-                                    //check to jump across
-                                    selectedPiece.SetPosition(xHit, zHit);
-                                    Destroy(oppositeColor.gameObject);
-                                }
-                            }
-                            else if (selectedPiece.gameObject.name == "RED")
-                            {
-                                if (selectedPiece.gameObject.transform.position == oppositeColor.transform.position)
-                                {
-
-                                    selectedPiece.SetPosition(xHitOG, zHitOG);
-                                }
-                            }
-
-                        }
-                    }
+                    CheckForOverlap(hit, xHitOG, zHitOG, ref xHit, ref zHit);
+                    CheckForOverlapTwo(hit, xHitOG, zHitOG, ref xHit, ref zHit);
 
 
-                    //IF UNOCCUPIED, SET POSITION
-
-
-
-                    //IF OCCUPIED, CANNOT LAND THERE (!SETPOISITON)
-                    //SUB IF SPACE ACROSS IS UNOCCUPIED, JUMP AND REMOVE OTHER PLAYER'S PIECE
-
-
-                    selectedPiece = null;
+                    selectedPiece = null; //LET GO OF PIECE
                     //SWITCH TURNS
                     if (playerOneTurn == true)
                     {
@@ -294,20 +221,109 @@ public class CheckersGame : MonoBehaviour
                 {
                     selectedPiece = hit.collider.gameObject.GetComponent<PieceBehaviour>();
 
-                    if (selectedPiece != null)
+                    //if (selectedPiece != null)
+                    //{
+                    //    Debug.Log($"selected piece at {selectedPiece.x}, {selectedPiece.z}");
+                    //}
+                } // MAKING SURE PIECE HAS BEEN ACCESSED
+            }
+            // Debug.DrawRay(ray.origin, ray.direction * 80, Color.green, 5);
+        }
+
+        CheckForCrowning();
+        CheckRemainingPieces();  //CHECK TO DETERMINE WINNER
+    }
+
+    private void CheckForOverlapTwo(RaycastHit hit, int xHitOG, int zHitOG, ref int xHit, ref int zHit)
+    {
+        foreach (GameObject otherRedPiece in GameObject.FindGameObjectsWithTag("RedPlayer"))
+        {
+            if (otherRedPiece != selectedPiece.gameObject)
+            {
+                if (selectedPiece.gameObject.name == "BLACK")
+                {
+                    if (selectedPiece.gameObject.transform.position == otherRedPiece.transform.position)
                     {
-                        Debug.Log($"selected piece at {selectedPiece.x}, {selectedPiece.z}");
+                        if (hit.point.x < xHit)
+                        {
+                            xHit = selectedPiece.x - 10;
+                        }
+                        else if (hit.point.x > xHit)
+                        {
+                            xHit = selectedPiece.x + 10;
+                        }
+
+                        if (hit.point.z < zHit || hit.point.z > 75)
+                        {
+                            zHit = selectedPiece.z - 10;
+                        }
+                        else if (hit.point.z > zHit || hit.point.z < 5)
+                        {
+                            zHit = selectedPiece.z + 10;
+                        }
+                        selectedPiece.SetPosition(xHit, zHit);
+                        Destroy(otherRedPiece.gameObject);
+                        Debug.Log("JUMPED");
+                    }
+                }
+                else if (selectedPiece.gameObject.name == "RED")
+                {
+                    if (selectedPiece.gameObject.transform.position == otherRedPiece.transform.position)
+                    {
+                        selectedPiece.SetPosition(xHitOG, zHitOG);
+                        Debug.Log("Blocked by own red");
+
+                    }
+                }
+
+            }
+
+        }
+    }
+
+    private void CheckForOverlap(RaycastHit hit, int xHitOG, int zHitOG, ref int xHit, ref int zHit)
+    {
+        foreach (GameObject otherBlackPiece in GameObject.FindGameObjectsWithTag("BlackPlayer"))
+        {
+            if (otherBlackPiece != selectedPiece.gameObject)
+            {
+                if (selectedPiece.gameObject.name == "RED")
+                {
+                    if (selectedPiece.gameObject.transform.position == otherBlackPiece.transform.position)
+                    {
+                        if (hit.point.x < xHit)
+                        {
+                            xHit = selectedPiece.x - 10;
+                        }
+                        else if (hit.point.x > xHit)
+                        {
+                            xHit = selectedPiece.x + 10;
+                        }
+
+                        if (hit.point.z < zHit || hit.point.z > 75)
+                        {
+                            zHit = selectedPiece.z - 10;
+                        }
+                        else if (hit.point.z > zHit || hit.point.z < 5)
+                        {
+                            zHit = selectedPiece.z + 10;
+                        }
+                        selectedPiece.SetPosition(xHit, zHit);
+                        Destroy(otherBlackPiece.gameObject);
+                    }
+                }
+                else if (selectedPiece.gameObject.name == "BLACK")
+                {
+                    if (selectedPiece.gameObject.transform.position == otherBlackPiece.transform.position)
+                    {
+                        selectedPiece.SetPosition(xHitOG, zHitOG);
+                        Debug.Log("Blocked by own black");
                     }
                 }
             }
-            Debug.DrawRay(ray.origin, ray.direction * 75, Color.green, 5);
+
         }
 
-      
-
-        CheckForCrowning();
-
-        CheckRemainingPieces();
     }
 
     private static void CheckForCrowning()
@@ -351,7 +367,5 @@ public class CheckersGame : MonoBehaviour
             winnerText.gameObject.SetActive(true);
             winnerText.text = "Red WINS!!!";
         }
-    } //Check to determine winner
-
-
+    }
 }
