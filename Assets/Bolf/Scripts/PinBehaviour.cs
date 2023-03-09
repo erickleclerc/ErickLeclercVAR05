@@ -1,31 +1,33 @@
-
 using UnityEngine;
+using System.Collections;
 
 
 public class PinBehaviour : MonoBehaviour
 {
-    Bolf bolfScript;
+    public Bolf bolfScript;
+    private bool hitAlready = false;
 
+    public bool isKnockedOver = false;
+    public float knockOverThreshold = 45f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public void HasBeenHit()
-    {
-        if (gameObject.transform.eulerAngles.x != 0)
+        if (hitAlready == false && transform.eulerAngles.z < 82 || hitAlready == false && transform.eulerAngles.z > 98) 
         {
             Debug.Log("HIT");
             bolfScript.score++;
+            hitAlready = true;
+            StartCoroutine(RemovePin());
         }
+    }
 
+    IEnumerator RemovePin()
+    {
+        yield return new WaitForSeconds(5);
+
+        Destroy(gameObject);
+        StopCoroutine(RemovePin());
     }
 }
