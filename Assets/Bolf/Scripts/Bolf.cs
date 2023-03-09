@@ -19,6 +19,7 @@ public class Bolf : MonoBehaviour
     private int attempt = 1;
     private float timer = 8f;
     private bool countingDown = false;
+    private bool spinBackAndForth = true;
     private Rigidbody rb;
 
     private void Start()
@@ -29,7 +30,10 @@ public class Bolf : MonoBehaviour
 
     void Update()
     {
-        transform.eulerAngles = new Vector3(0, Mathf.PingPong(Time.time * 60, 90) - 45, 90);
+        if (spinBackAndForth)
+        {
+            transform.eulerAngles = new Vector3(0, Mathf.PingPong(Time.time * 60, 90) - 45, 90);
+        }
         //Vector3 origin = gameObject.transform.position;
         //Vector3 endPoint = transform.TransformPoint(Vector3.forward * 3);
         //Debug.DrawLine(origin, endPoint, Color.green, .2f);
@@ -38,6 +42,7 @@ public class Bolf : MonoBehaviour
         if (Keyboard.current.spaceKey.wasPressedThisFrame && !countingDown)
         {
             arrow.SetActive(false);
+            spinBackAndForth=false;
             Vector3 forceDirection = transform.TransformDirection(Vector3.forward) * shotForce;
 
             rb.AddForce(forceDirection, ForceMode.Impulse);
@@ -83,7 +88,7 @@ public class Bolf : MonoBehaviour
             resultsText.text = "GUTTER";
             StartCoroutine(BeginNextAttempt());
         }
-        else if (score == 10)
+        else if (attempt == 1 && score == 10)
         {
             resultsText.gameObject.SetActive(true);
             resultsText.text = "STRIKE";
@@ -105,6 +110,7 @@ public class Bolf : MonoBehaviour
         resultsText.gameObject.SetActive(false);
         rb.velocity = Vector3.zero;
         gameObject.transform.position = startingPoint;
+        spinBackAndForth = true;
         arrow.SetActive(true);
         StopCoroutine(BeginNextAttempt());
     }
