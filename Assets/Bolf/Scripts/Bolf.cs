@@ -16,13 +16,15 @@ public class Bolf : MonoBehaviour
 
 
     public int score = 0;
-    public int attempt = 1;
-    public float timer = 8f;
+    private int attempt = 1;
+    private float timer = 8f;
     private bool countingDown = false;
+    private Rigidbody rb;
 
     private void Start()
     {
         gameObject.transform.position = startingPoint;
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -38,9 +40,7 @@ public class Bolf : MonoBehaviour
             arrow.SetActive(false);
             Vector3 forceDirection = transform.TransformDirection(Vector3.forward) * shotForce;
 
-            Rigidbody rb = GetComponent<Rigidbody>();
             rb.AddForce(forceDirection, ForceMode.Impulse);
-
             countingDown = true;
         }
 
@@ -59,7 +59,6 @@ public class Bolf : MonoBehaviour
 
             //SETUP ATTTEMPT 2
             attempt++;
-            Debug.Log(attempt);
         }
 
 
@@ -104,6 +103,7 @@ public class Bolf : MonoBehaviour
         timer = 8f;
         countingDown = false;
         resultsText.gameObject.SetActive(false);
+        rb.velocity = Vector3.zero;
         gameObject.transform.position = startingPoint;
         arrow.SetActive(true);
         StopCoroutine(BeginNextAttempt());

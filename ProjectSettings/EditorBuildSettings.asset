@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Bolf/Scenes/Bolf Scene 1.unity
     guid: 99caadc66a4ec254e885ea5cebc321e8
+  - enabled: 1
+    path: Assets/Bolf/Scenes/Bolf Scene 2.unity
+    guid: 08d04ebae20c34e4f96d437593fac700
   m_configObjects: {}

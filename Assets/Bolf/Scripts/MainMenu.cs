@@ -10,6 +10,6 @@ public class MainMenu : MonoBehaviour
 
     public void CourseTwo()
     {
-        SceneManager.LoadScene("Bolf Scene 1"); // CHANGE TO SCENE 2 ONCE ITS MADE
+        SceneManager.LoadScene("Bolf Scene 2"); 
     }
 }
