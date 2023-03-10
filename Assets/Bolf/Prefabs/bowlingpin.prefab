@@ -129,5 +129,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bolfScript: {fileID: 0}
-  isKnockedOver: 0
-  knockOverThreshold: 45

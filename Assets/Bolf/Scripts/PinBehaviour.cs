@@ -6,17 +6,15 @@ public class PinBehaviour : MonoBehaviour
 {
     public Bolf bolfScript;
     private bool hitAlready = false;
+    private float rotationalDifference;
 
-    public bool isKnockedOver = false;
-    public float knockOverThreshold = 45f;
-
-
-    // Update is called once per frame
     void Update()
     {
-        if (hitAlready == false && transform.eulerAngles.z < 82 || hitAlready == false && transform.eulerAngles.z > 98) 
+        rotationalDifference = Vector3.Angle(Vector3.up, transform.up);     //ANGLE the gameobject is from pointing straight up
+
+        if (hitAlready == false && rotationalDifference > 18)
         {
-            Debug.Log("HIT");
+            //Debug.Log("HIT");
             bolfScript.score++;
             hitAlready = true;
             StartCoroutine(RemovePin());

@@ -13,9 +13,8 @@ public class Bolf : MonoBehaviour
     public Button restartLevel;
     public Button returnToMenu;
     public Vector3 startingPoint;
-
-
     public int score = 0;
+
     private int attempt = 1;
     private float timer = 8f;
     private bool countingDown = false;
@@ -26,6 +25,7 @@ public class Bolf : MonoBehaviour
     {
         gameObject.transform.position = startingPoint;
         rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
     }
 
     void Update()
@@ -43,6 +43,7 @@ public class Bolf : MonoBehaviour
         {
             arrow.SetActive(false);
             spinBackAndForth=false;
+            rb.isKinematic = false;
             Vector3 forceDirection = transform.TransformDirection(Vector3.forward) * shotForce;
 
             rb.AddForce(forceDirection, ForceMode.Impulse);
@@ -52,8 +53,6 @@ public class Bolf : MonoBehaviour
         if (countingDown && timer > 0)  //COUNTDOWN AFTER SHOT IS MADE
         {
             timer -= Time.deltaTime;
-            //Debug.Log(timer);
-
         }
         else if (countingDown && timer <= 0)
         {
@@ -66,7 +65,6 @@ public class Bolf : MonoBehaviour
             attempt++;
         }
 
-
         scoreText.text = "Score: " + score.ToString();
  
        
@@ -76,8 +74,7 @@ public class Bolf : MonoBehaviour
             returnToMenu.gameObject.SetActive(true);
 
             gameObject.SetActive(false);
-            //Time.timeScale = 0;                               //FREEZE THE SCENE
-        }        //Restart Game/Return to Menu
+        }                                                        //Restart Game/Return to Menu
     }
 
     private void CheckResults()
@@ -92,6 +89,12 @@ public class Bolf : MonoBehaviour
         {
             resultsText.gameObject.SetActive(true);
             resultsText.text = "STRIKE";
+            StartCoroutine(BeginNextAttempt());
+        }
+        else if (attempt == 2 && score == 10)
+        {
+            resultsText.gameObject.SetActive(true);
+            resultsText.text = "SPARE";
             StartCoroutine(BeginNextAttempt());
         }
         else
@@ -111,6 +114,7 @@ public class Bolf : MonoBehaviour
         rb.velocity = Vector3.zero;
         gameObject.transform.position = startingPoint;
         spinBackAndForth = true;
+        rb.isKinematic = true;
         arrow.SetActive(true);
         StopCoroutine(BeginNextAttempt());
     }
