@@ -105,7 +105,7 @@ public class Bolf : MonoBehaviour
 
     IEnumerator BeginNextAttempt()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
 
         
         timer = 8f;

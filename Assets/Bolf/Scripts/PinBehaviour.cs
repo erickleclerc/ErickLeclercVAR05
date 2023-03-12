@@ -23,7 +23,7 @@ public class PinBehaviour : MonoBehaviour
 
     IEnumerator RemovePin()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
 
         Destroy(gameObject);
         StopCoroutine(RemovePin());

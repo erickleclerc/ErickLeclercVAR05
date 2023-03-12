@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: bolfScript
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2962274080490603314, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
       propertyPath: bolfScript
       value: 
@@ -121,6 +129,14 @@ PrefabInstance:
     - target: {fileID: 2962274079273675445, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
       propertyPath: bolfScript
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2962274080490603314, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
       propertyPath: bolfScript
@@ -192,6 +208,14 @@ PrefabInstance:
       propertyPath: bolfScript
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2962274080490603314, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
       propertyPath: bolfScript
       value: 
@@ -261,6 +285,14 @@ PrefabInstance:
     - target: {fileID: 2962274079273675445, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
       propertyPath: bolfScript
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2962274080490603314, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
       propertyPath: bolfScript
@@ -332,6 +364,14 @@ PrefabInstance:
       propertyPath: bolfScript
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2962274080490603314, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
       propertyPath: bolfScript
       value: 
@@ -401,6 +441,14 @@ PrefabInstance:
     - target: {fileID: 2962274079273675445, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
       propertyPath: bolfScript
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2962274080490603314, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
       propertyPath: bolfScript
@@ -472,6 +520,14 @@ PrefabInstance:
       propertyPath: bolfScript
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2962274080490603314, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
       propertyPath: bolfScript
       value: 
@@ -541,6 +597,14 @@ PrefabInstance:
     - target: {fileID: 2962274079273675445, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
       propertyPath: bolfScript
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2962274080490603314, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
       propertyPath: bolfScript
@@ -612,6 +676,14 @@ PrefabInstance:
       propertyPath: bolfScript
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2962274080490603314, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
       propertyPath: bolfScript
       value: 
@@ -681,6 +753,14 @@ PrefabInstance:
     - target: {fileID: 2962274079273675445, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
       propertyPath: bolfScript
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962274080490603312, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2962274080490603314, guid: 1c3e3947bffa7524ca8ce486203f4f51, type: 3}
       propertyPath: bolfScript
