@@ -6,15 +6,14 @@ public class PinBehaviour : MonoBehaviour
 {
     public Bolf bolfScript;
     private bool hitAlready = false;
-    private float rotationalDifference;
+    private float angularDifference;
 
     void Update()
     {
-        rotationalDifference = Vector3.Angle(Vector3.up, transform.up);     //ANGLE the gameobject is from pointing straight up
+        angularDifference = Vector3.Angle(Vector3.up, transform.up);     //ANGLE the gameobject is from pointing straight up
 
-        if (hitAlready == false && rotationalDifference > 18)
+        if (hitAlready == false && angularDifference > 18)
         {
-            //Debug.Log("HIT");
             bolfScript.score++;
             hitAlready = true;
             StartCoroutine(RemovePin());

@@ -139,10 +139,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1243103500}
     - target: {fileID: 2897411561251851469, guid: ba95768fb7884414dbf81bc189a9b44b, type: 3}
-      propertyPath: shotForce
-      value: 175
-      objectReference: {fileID: 0}
-    - target: {fileID: 2897411561251851469, guid: ba95768fb7884414dbf81bc189a9b44b, type: 3}
       propertyPath: resultsText
       value: 
       objectReference: {fileID: 2111545709}
@@ -154,26 +150,6 @@ PrefabInstance:
       propertyPath: returnToMenu
       value: 
       objectReference: {fileID: 689445317}
-    - target: {fileID: 2897411561251851469, guid: ba95768fb7884414dbf81bc189a9b44b, type: 3}
-      propertyPath: startingPoint.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2897411561251851469, guid: ba95768fb7884414dbf81bc189a9b44b, type: 3}
-      propertyPath: startingPoint.z
-      value: -6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2897411561251851474, guid: ba95768fb7884414dbf81bc189a9b44b, type: 3}
-      propertyPath: m_Drag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2897411561251851474, guid: ba95768fb7884414dbf81bc189a9b44b, type: 3}
-      propertyPath: m_Mass
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2897411561251851474, guid: ba95768fb7884414dbf81bc189a9b44b, type: 3}
-      propertyPath: m_AngularDrag
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3440491781099204838, guid: ba95768fb7884414dbf81bc189a9b44b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -218,9 +194,52 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1511569588, guid: ba95768fb7884414dbf81bc189a9b44b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba95768fb7884414dbf81bc189a9b44b, type: 3}
+--- !u!1 &294713284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 294713286}
+  - component: {fileID: 294713285}
+  m_Layer: 0
+  m_Name: Screenshot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &294713285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294713284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b335206ee58748b9ad0655201b330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &294713286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294713284}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 476.27332, y: 250.72333, z: 0.4828354}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &599592689
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +379,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.97695106, g: 1, b: 0.759434, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -757,7 +776,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.85496616, g: 1, b: 0.740566, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1376,14 +1395,14 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281085125
+  m_fontColor: {r: 0.77254903, g: 0.17254902, b: 0.17254902, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

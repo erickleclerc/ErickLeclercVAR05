@@ -13,7 +13,6 @@ public class RestartLevel : MonoBehaviour
         }
     }
 
-
     public void ReplayLevel()
     {
         Time.timeScale = 1;

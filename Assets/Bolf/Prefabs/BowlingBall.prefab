@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2897411561251851474}
   - component: {fileID: 2897411561251851475}
   - component: {fileID: 2897411561251851469}
-  - component: {fileID: 1511569588}
   m_Layer: 0
   m_Name: BowlingBall
   m_TagString: Untagged
@@ -97,9 +96,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2662970602807224924}
   serializedVersion: 2
-  m_Mass: 2
+  m_Mass: 8
   m_Drag: 0
-  m_AngularDrag: 0.02
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -130,23 +129,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fbce8d98a84f94cb6873a8a1d5a1d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotForce: 38
+  shotForce: 175
   resultsText: {fileID: 0}
   scoreText: {fileID: 0}
   arrow: {fileID: 7428393563335107104}
+  restartLevel: {fileID: 0}
+  returnToMenu: {fileID: 0}
+  startingPoint: {x: 0, y: 0.5, z: -6}
   score: 0
---- !u!114 &1511569588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2662970602807224924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eee140c406eba2b40a132b91d7513a4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8172047462290908583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154,6 +144,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3440491781099204838}
     m_Modifications:
+    - target: {fileID: 972488588500919890, guid: 99161d2568b279c469f688f82144d853, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: abf46b3fa861fb7488633c8245aa31a3, type: 2}
     - target: {fileID: 1620738723620079495, guid: 99161d2568b279c469f688f82144d853, type: 3}
       propertyPath: m_Name
       value: Arrow

@@ -34,9 +34,6 @@ public class Bolf : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(0, Mathf.PingPong(Time.time * 60, 90) - 45, 90);
         }
-        //Vector3 origin = gameObject.transform.position;
-        //Vector3 endPoint = transform.TransformPoint(Vector3.forward * 3);
-        //Debug.DrawLine(origin, endPoint, Color.green, .2f);
 
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame && !countingDown)
@@ -50,7 +47,7 @@ public class Bolf : MonoBehaviour
             countingDown = true;
         }
 
-        if (countingDown && timer > 0)  //COUNTDOWN AFTER SHOT IS MADE
+        if (countingDown && timer > 0)                           //COUNTDOWN AFTER SHOT IS MADE
         {
             timer -= Time.deltaTime;
         }
@@ -60,9 +57,7 @@ public class Bolf : MonoBehaviour
             Debug.Log("DONE ROUND");
             CheckResults();
 
-
-            //SETUP ATTTEMPT 2
-            attempt++;
+            attempt++;                                          //SETUP ATTTEMPT 2
         }
 
         scoreText.text = "Score: " + score.ToString();
@@ -107,7 +102,6 @@ public class Bolf : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
 
-        
         timer = 8f;
         countingDown = false;
         resultsText.gameObject.SetActive(false);
