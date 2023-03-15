@@ -7,13 +7,11 @@ using System.Collections;
 public class Bolf : MonoBehaviour
 {
     public float shotForce = 45f;
-    public TextMeshProUGUI resultsText;
-    public TextMeshProUGUI scoreText;
-    public GameObject arrow;
-    public Button restartLevel;
-    public Button returnToMenu;
-    public Vector3 startingPoint;
     public int score = 0;
+    public TextMeshProUGUI resultsText, scoreText;
+    public GameObject arrow;
+    public Button restartLevel, returnToMenu;
+    public Vector3 startingPoint;
 
     private int attempt = 1;
     private float timer = 8f;
@@ -34,7 +32,6 @@ public class Bolf : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(0, Mathf.PingPong(Time.time * 60, 90) - 45, 90);
         }
-
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame && !countingDown)
         {
@@ -62,7 +59,6 @@ public class Bolf : MonoBehaviour
 
         scoreText.text = "Score: " + score.ToString();
  
-       
         if (attempt == 3)
         {
             restartLevel.gameObject.SetActive(true);

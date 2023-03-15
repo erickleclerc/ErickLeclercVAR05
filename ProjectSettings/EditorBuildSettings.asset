@@ -6,12 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Bolf/Scenes/Main Menu.unity
+    path: Assets/7. Bolf/Scenes/Main Menu.unity
     guid: 620791e6dc1d4324cbe0d0009b23998c
   - enabled: 1
-    path: Assets/Bolf/Scenes/Bolf Scene 1.unity
+    path: Assets/7. Bolf/Scenes/Bolf Scene 1.unity
     guid: 99caadc66a4ec254e885ea5cebc321e8
   - enabled: 1
-    path: Assets/Bolf/Scenes/Bolf Scene 2.unity
+    path: Assets/7. Bolf/Scenes/Bolf Scene 2.unity
     guid: 08d04ebae20c34e4f96d437593fac700
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7642536ecb4f8c74e947687bb14fe6e6, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 953a311b69ca2f340a9c72bbe6c935df, type: 2}
