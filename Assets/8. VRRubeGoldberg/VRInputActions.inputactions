@@ -1,0 +1,54 @@
+{
+    "name": "VRInputActions",
+    "maps": [
+        {
+            "name": "Default",
+            "id": "c37a1ae8-1a40-4897-9239-2be7b31d358e",
+            "actions": [
+                {
+                    "name": "Primary Button Right Hand",
+                    "type": "Value",
+                    "id": "5f80cf5e-2c77-45c0-8d26-947751e9b3e3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "X Button Left Hand",
+                    "type": "Value",
+                    "id": "8b08527e-0868-4c91-a40b-cb5b0193d810",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f2c2159d-2f81-4217-bf18-e17a30f1af68",
+                    "path": "<OculusTouchController>/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Button Right Hand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8527ffa7-58e8-4fad-9852-d84d12e552f6",
+                    "path": "<XRInputV1::Oculus::OculusTouchControllerOpenXR>{LeftHand}/primarybutton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "X Button Left Hand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
