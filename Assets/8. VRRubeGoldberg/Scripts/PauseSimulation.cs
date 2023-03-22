@@ -21,7 +21,7 @@ public class PauseSimulation : MonoBehaviour
         else if (inputActions.Default.YButtonLeftHand.IsPressed() || Keyboard.current.pKey.isPressed)
         {
             Physics.autoSimulation = true;
-            //Physics.Simulate(Time.fixedDeltaTime);
+            //Physics.Simulate(Time.fixedDeltaTime);  Could add in a custom time like double the speed using this.
         }
     }
 }
