@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PauseSimulation : MonoBehaviour
 {
     private VRInputActions inputActions;
+    private bool isCurrentlyPaused = false;
 
     private void Awake()
     {
@@ -13,15 +14,22 @@ public class PauseSimulation : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Done with CONTROLLER and KEYBOARD for testing
-        if (inputActions.Default.XButtonLeftHand.IsPressed() || Keyboard.current.oKey.isPressed)
+        if (isCurrentlyPaused == false)
         {
-            Physics.autoSimulation = false;
+            //Done with CONTROLLER and KEYBOARD for testing
+            if (inputActions.Default.XButtonLeftHand.WasPressedThisFrame() || Keyboard.current.oKey.isPressed)
+            {
+                Physics.autoSimulation = false;
+                isCurrentlyPaused = true;
+            }
         }
-        else if (inputActions.Default.YButtonLeftHand.IsPressed() || Keyboard.current.pKey.isPressed)
+        else if (isCurrentlyPaused == true)
         {
-            Physics.autoSimulation = true;
-            //Physics.Simulate(Time.fixedDeltaTime);  Could add in a custom time like double the speed using this.
+            if (inputActions.Default.XButtonLeftHand.WasPressedThisFrame() || Keyboard.current.oKey.isPressed)
+            {
+                Physics.autoSimulation = true;
+                isCurrentlyPaused = false;
+            }
         }
     }
 }
