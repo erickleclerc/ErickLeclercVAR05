@@ -6,7 +6,6 @@ public class VRInputController : MonoBehaviour
 {
     private VRInputActions actions;
 
-
     //public variable generally have CAPITAL letters
     public Vector2 Joystick;
     public float RightTrigger;

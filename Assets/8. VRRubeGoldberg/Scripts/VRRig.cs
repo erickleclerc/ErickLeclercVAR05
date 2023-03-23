@@ -15,7 +15,7 @@ public class VRRig : MonoBehaviour
 
             //leftHandy.SetPositionAndRotation(leftPosition + new Vector3(0, 1, 0), leftRotation); OLD FORMAT OF BELOW
             
-            leftHandy.localPosition = leftPosition + new Vector3(0, 1, 0);
+            leftHandy.localPosition = leftPosition + new Vector3(0, 0, 0);
             leftHandy.localRotation = leftRotation;
 
         }                                                               //Left Hand world placement
@@ -27,7 +27,7 @@ public class VRRig : MonoBehaviour
 
             //rightHandy.SetPositionAndRotation(rightPosition + new Vector3(0, 1, 0), rightRotation); OLD FORMAT OF BELOW
 
-            rightHandy.localPosition = rightPosition + new Vector3(0, 1, 0);
+            rightHandy.localPosition = rightPosition + new Vector3(0, 0, 0);
             rightHandy.localRotation = rightRotation;
         }                                                              //Right Hand world placement
 
@@ -40,7 +40,8 @@ public class VRRig : MonoBehaviour
 
            // head.SetPositionAndRotation(headPosition + new Vector3(0,1,0), headRotation); OLD FORMAT
 
-            head.localPosition= headPosition + new Vector3(0, 1, 0); 
+            head.localPosition= headPosition + new Vector3(0, 0
+                , 0); 
             head.localRotation = headRotation;
         }                                                                                 //Head world placement
     }

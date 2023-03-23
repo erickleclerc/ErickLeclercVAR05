@@ -15,6 +15,7 @@ TagManager:
   - CrownedRed
   - CrownedBlack
   - VRRig
+  - Floor
   layers:
   - Default
   - TransparentFX

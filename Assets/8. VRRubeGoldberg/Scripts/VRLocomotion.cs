@@ -1,12 +1,10 @@
 using UnityEngine;
-
 public class VRLocomotion : MonoBehaviour
 {
     private VRInputController inputController;
 
     public Transform headFacing;
     public float moveSpeed = 2f;
-
 
     private void Awake()
     {
