@@ -16,6 +16,8 @@ TagManager:
   - CrownedBlack
   - VRRig
   - Floor
+  - RightHandOnlyGrab
+  - Marble
   layers:
   - Default
   - TransparentFX

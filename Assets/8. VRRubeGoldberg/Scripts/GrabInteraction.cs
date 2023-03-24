@@ -45,7 +45,7 @@ public class GrabInteraction : MonoBehaviour
         }
 
     }
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider marble)
     {
         if (wasDropped == true)
         {
@@ -54,13 +54,14 @@ public class GrabInteraction : MonoBehaviour
 
         if (heldObject == null)
         {
-            Rigidbody rb = other.GetComponent<Rigidbody>();
+            Rigidbody rb = marble.GetComponent<Rigidbody>();
+            Debug.Log(marble.gameObject.name);
 
-            if (rb != null)
+            if (rb != null && marble.gameObject.CompareTag("Marble"))
             {
                 if (inputActions.Default.PrimaryButtonRightHand.WasPressedThisFrame())
                 {
-                    other.transform.parent = transform;
+                    marble.transform.parent = transform;
                     rb.isKinematic = true;
 
                     heldObject = rb;

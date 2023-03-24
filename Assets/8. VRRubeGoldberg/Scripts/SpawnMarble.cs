@@ -16,6 +16,7 @@ public class SpawnMarble : MonoBehaviour
         if (newMarble == null)
         {
             newMarble = Instantiate(marble, new Vector3(-12.8f, 4f, -12f), Quaternion.identity);
+            newMarble.gameObject.tag = "Marble";
         }
         else 
         {

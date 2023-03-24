@@ -21,9 +21,6 @@ public class ResetMachine : MonoBehaviour
         {
             Scene currentScene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(currentScene.name);
-
-
-
         }
 
     }
