@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class SetStageThree : MonoBehaviour
+public class DirectToStageThree : MonoBehaviour
 {
-    public GameObject stageThree;
+    public GameObject continueText;
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            stageThree.gameObject.SetActive(true);
+            continueText.gameObject.SetActive(true);
         }
     }
 }
