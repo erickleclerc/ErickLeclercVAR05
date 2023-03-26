@@ -89,6 +89,15 @@ public partial class @VRInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Grab Buttons"",
+                    ""type"": ""Button"",
+                    ""id"": ""bdcd1dc2-0b49-45f2-9dcf-c77ed6279f82"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -168,6 +177,28 @@ public partial class @VRInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""B Button Right Hand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eff500d1-1c4d-4141-b695-c8f113aa9462"",
+                    ""path"": ""<OculusTouchController>{RightHand}/gripPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab Buttons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ffa4562-24e3-4422-ba99-2843d0a1c39b"",
+                    ""path"": ""<OculusTouchController>{LeftHand}/gripPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab Buttons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -183,6 +214,7 @@ public partial class @VRInputActions : IInputActionCollection2, IDisposable
         m_Default_RightTrigger = m_Default.FindAction("RightTrigger", throwIfNotFound: true);
         m_Default_TriggerLeftHand = m_Default.FindAction("Trigger Left Hand ", throwIfNotFound: true);
         m_Default_BButtonRightHand = m_Default.FindAction("B Button Right Hand", throwIfNotFound: true);
+        m_Default_GrabButtons = m_Default.FindAction("Grab Buttons", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -249,6 +281,7 @@ public partial class @VRInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_RightTrigger;
     private readonly InputAction m_Default_TriggerLeftHand;
     private readonly InputAction m_Default_BButtonRightHand;
+    private readonly InputAction m_Default_GrabButtons;
     public struct DefaultActions
     {
         private @VRInputActions m_Wrapper;
@@ -260,6 +293,7 @@ public partial class @VRInputActions : IInputActionCollection2, IDisposable
         public InputAction @RightTrigger => m_Wrapper.m_Default_RightTrigger;
         public InputAction @TriggerLeftHand => m_Wrapper.m_Default_TriggerLeftHand;
         public InputAction @BButtonRightHand => m_Wrapper.m_Default_BButtonRightHand;
+        public InputAction @GrabButtons => m_Wrapper.m_Default_GrabButtons;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -290,6 +324,9 @@ public partial class @VRInputActions : IInputActionCollection2, IDisposable
                 @BButtonRightHand.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnBButtonRightHand;
                 @BButtonRightHand.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnBButtonRightHand;
                 @BButtonRightHand.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnBButtonRightHand;
+                @GrabButtons.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnGrabButtons;
+                @GrabButtons.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnGrabButtons;
+                @GrabButtons.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnGrabButtons;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
@@ -315,6 +352,9 @@ public partial class @VRInputActions : IInputActionCollection2, IDisposable
                 @BButtonRightHand.started += instance.OnBButtonRightHand;
                 @BButtonRightHand.performed += instance.OnBButtonRightHand;
                 @BButtonRightHand.canceled += instance.OnBButtonRightHand;
+                @GrabButtons.started += instance.OnGrabButtons;
+                @GrabButtons.performed += instance.OnGrabButtons;
+                @GrabButtons.canceled += instance.OnGrabButtons;
             }
         }
     }
@@ -328,5 +368,6 @@ public partial class @VRInputActions : IInputActionCollection2, IDisposable
         void OnRightTrigger(InputAction.CallbackContext context);
         void OnTriggerLeftHand(InputAction.CallbackContext context);
         void OnBButtonRightHand(InputAction.CallbackContext context);
+        void OnGrabButtons(InputAction.CallbackContext context);
     }
 }
