@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -8,22 +6,24 @@ public class Countdown : MonoBehaviour
     public TMP_Text countdownText;
     public GameObject stageThree;
 
-    public float timer = 3f;
+    public float timer = 4f;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         countdownText.color = Color.red;
     }
 
-    // Update is called once per frame
     void Update()
     {
        timer -= Time.deltaTime;
 
 
-        if (timer > 2)
+        if (timer > 3)
+        {
+            countdownText.text = "4";
+        }
+        else if (timer > 2 && timer < 3)
         {
             countdownText.text = "3";
         }
@@ -45,7 +45,5 @@ public class Countdown : MonoBehaviour
             stageThree.gameObject.SetActive(true);
             Destroy(gameObject);    
         }
-
-
     }
 }

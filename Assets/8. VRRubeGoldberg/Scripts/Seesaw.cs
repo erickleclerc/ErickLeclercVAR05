@@ -1,22 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Seesaw : MonoBehaviour
 {
-    public GameObject fireworkOne;
-    public GameObject fireworkTwo;
+    public GameObject fireworks;
+    public GameObject theEndText;
+    public GameObject stageFour;
 
-  
+    private void Update()
+    {
+        transform.eulerAngles += new Vector3 (20 * Time.deltaTime, 0, 0);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(collision.gameObject);
 
-         fireworkOne.gameObject.SetActive(true);
-        fireworkTwo.gameObject.SetActive(true);
+        fireworks.gameObject.SetActive(true);
+        theEndText.gameObject.SetActive(true);
+        stageFour.gameObject.SetActive(true);
         Destroy(gameObject);
-
-        
     }
 }

@@ -11,7 +11,6 @@ public class VRLocomotion : MonoBehaviour
         inputController = GetComponent<VRInputController>();
     }
 
-
     void Update()
     {
         Vector2 moveInput = inputController.Joystick;
