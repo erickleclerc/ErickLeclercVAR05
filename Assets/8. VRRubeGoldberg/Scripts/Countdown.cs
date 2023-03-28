@@ -5,9 +5,7 @@ public class Countdown : MonoBehaviour
 {
     public TMP_Text countdownText;
     public GameObject stageThree;
-
     public float timer = 4f;
-
 
     void Start()
     {
@@ -17,7 +15,6 @@ public class Countdown : MonoBehaviour
     void Update()
     {
        timer -= Time.deltaTime;
-
 
         if (timer > 3)
         {

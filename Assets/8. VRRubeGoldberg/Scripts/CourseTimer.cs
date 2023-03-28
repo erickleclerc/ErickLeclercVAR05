@@ -6,7 +6,6 @@ public class CourseTimer : MonoBehaviour
     public int finalTime;
     public bool stopTime = false;
 
-    // Update is called once per frame
     void Update()
     {
         if (stopTime == false)

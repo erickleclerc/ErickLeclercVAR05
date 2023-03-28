@@ -4,6 +4,7 @@ public class SpawnMarble : MonoBehaviour
 {
     public GameObject marble;
     public GameObject stageTwo;
+    public GameObject rightHandText;
 
     private GameObject newMarble;
 
@@ -17,6 +18,7 @@ public class SpawnMarble : MonoBehaviour
         {
             newMarble = Instantiate(marble, new Vector3(-12.8f, 4f, -12f), Quaternion.identity);
             newMarble.gameObject.tag = "Marble";
+            rightHandText.gameObject.SetActive(true);
         }
         else 
         {

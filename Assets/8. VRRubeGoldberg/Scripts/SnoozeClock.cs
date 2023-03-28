@@ -6,7 +6,7 @@ public class SnoozeClock : MonoBehaviour
     public GameObject finalText;
     public CourseTimer courseTimer;
 
-    public bool test = false;
+    
 
 
     private void OnCollisionExit(Collision collision)
@@ -16,17 +16,6 @@ public class SnoozeClock : MonoBehaviour
 
         BoxCollider box = GetComponent<BoxCollider>();
         box.isTrigger = true;
-    }
-
-    private void Update()
-    {
-        if (test == true)
-        {
-            source.enabled = false;
-            courseTimer.stopTime = true;
-            finalText.gameObject.SetActive(true);
-
-        }
     }
 
     private void OnTriggerEnter(Collider other)
