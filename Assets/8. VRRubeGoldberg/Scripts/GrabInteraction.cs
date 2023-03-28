@@ -55,7 +55,7 @@ public class GrabInteraction : MonoBehaviour
         if (heldObject == null)
         {
             Rigidbody rb = marble.GetComponent<Rigidbody>();
-            Debug.Log(marble.gameObject.name);
+            //Debug.Log(marble.gameObject.name);
 
             if (rb != null && marble.gameObject.CompareTag("Marble"))
             {

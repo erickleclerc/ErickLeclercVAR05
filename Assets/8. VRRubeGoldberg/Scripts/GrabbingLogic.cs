@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GrabbingLogic : MonoBehaviour
@@ -15,7 +13,6 @@ public class GrabbingLogic : MonoBehaviour
 
     private void Awake()
     {
-
         inputActions = new VRInputActions();
         inputActions.Enable();
     }
