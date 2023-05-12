@@ -15,5 +15,6 @@ EditorBuildSettings:
     path: Assets/7. Bolf/Scenes/Bolf Scene 2.unity
     guid: 08d04ebae20c34e4f96d437593fac700
   m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: eb8b42ed0700caf498157c2fbde611e6, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7642536ecb4f8c74e947687bb14fe6e6, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 953a311b69ca2f340a9c72bbe6c935df, type: 2}
